@@ -20,14 +20,10 @@ public class Customer {
     }
 
     public String statement() {
-	int frequentRenterPoints = 0;
 	Enumeration rentals = _rentals.elements();
 	String result = getName() + " 고객님의 대여 기록\n";
 	while (rentals.hasMoreElements()) {
 	    Rental each = (Rental) rentals.nextElement();
-
-	    // 적립 포인트 지급 함수를 호출
-	    frequentRenterPoints += each.getFrequentRenterPoints();
 
 	    // 이번에 대여하는 비디오 정보와 대여료 출력
 	    result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
@@ -36,6 +32,23 @@ public class Customer {
 	// 푸터 행 추가
 	result += "누적 대여료: " + String.valueOf(getTotalCharge()) + "\n";
 	result += "적립 포인트: " + String.valueOf(getTotalFrequentRenterPoints());
+
+	return result;
+    }
+
+    public String htmlStatement() {
+	Enumeration rentals = _rentals.elements();
+	String result = "<H1><EM>" + getName() + " 고객님의 대여 기록</EM></H1><P>\n";
+	while (rentals.hasMoreElements()) {
+	    Rental each = (Rental) rentals.nextElement();
+
+	    // 모든 대여 비디오 정보와 대여료 출력
+	    result += each.getMovie().getTitle() + ": " + String.valueOf(each.getCharge()) + "<BR>\n";
+	}
+
+	// 푸터 행 추가
+	result += "<P>누적 대여료: <EM>" + String.valueOf(getTotalCharge()) + "</EM><P>\n";
+	result += "적립 포인트: <EM>" + String.valueOf(getTotalFrequentRenterPoints()) + "</EM><P>";
 
 	return result;
     }

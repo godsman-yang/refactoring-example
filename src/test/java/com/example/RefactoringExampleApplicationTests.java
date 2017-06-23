@@ -28,9 +28,12 @@ public class RefactoringExampleApplicationTests {
 
 	testCustomer1.addRental(testRental1);
 	System.out.println(testCustomer1.statement());
+	System.out.println(testCustomer1.htmlStatement());
 	testCustomer1.addRental(testRental2);
 	System.out.println(testCustomer1.statement());
+	System.out.println(testCustomer1.htmlStatement());
 	testCustomer1.addRental(testRental3);
 	System.out.println(testCustomer1.statement());
+	System.out.println(testCustomer1.htmlStatement());
     }
 }
