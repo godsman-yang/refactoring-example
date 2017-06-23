@@ -17,33 +17,12 @@ public class Rental {
 	return _movie;
     }
 
-    // 비디오 종류별 대여료 계산 기능을 빼내어 별도의 함수로 작성
     public double getCharge() {
-	double result = 0;
-	// 비디오 종류별 대여료 계산
-	switch (getMovie().getPriceCode()) {
-	case Movie.REGULAR:
-	    result += 2;
-	    if (getDaysRented() > 2)
-		result += (getDaysRented() - 2) * 1.5;
-	    break;
-	case Movie.NEW_RELEASE:
-	    result += getDaysRented() * 3;
-	    break;
-	case Movie.CHILDRENS:
-	    result += 1.5;
-	    if (getDaysRented() > 3)
-		result += (getDaysRented() - 3) * 1.5;
-	    break;
-	}
-	return result;
+	return _movie.getCharge(_daysRented);
     }
 
-    // 최신물을 이틀 이상 대여하면 2 포인트 지급, 그 외엔 1포인트 지급
     public int getFrequentRenterPoints() {
-	if ((getMovie().getPriceCode() == Movie.NEW_RELEASE) && getDaysRented() > 1)
-	    return 2;
-	else
-	    return 1;
+	return _movie.getFrequentRenterPoints(_daysRented);
+
     }
 }
