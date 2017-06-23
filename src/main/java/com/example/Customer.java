@@ -29,7 +29,7 @@ public class Customer {
 	    Rental each = (Rental) rentals.nextElement();
 
 	    // 비디오 종류별 대여료 계산 함수를 호출
-	    thisAmount = amountFor(each);
+	    thisAmount = each.getCharge();
 
 	    // 적립 포인트 1 포인트 증가
 	    frequentRenterPoints++;
@@ -50,9 +50,5 @@ public class Customer {
 	result += "적립 포인트: " + String.valueOf(frequentRenterPoints);
 
 	return result;
-    }
-
-    private double amountFor(Rental aRental) {
-	return aRental.getCharge();
     }
 }
